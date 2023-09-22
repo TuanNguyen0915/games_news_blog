@@ -1,0 +1,17 @@
+<%- include('./partials/html-head') %>
+  <%- include('./partials/nav') %>
+
+    <main>
+      <h1>Welcome back, <%= user ? user.profile.name : "username" %>
+      </h1>
+      <h1>
+        <%=new Date().getHours() < 12?"Good Morning":new Date().getHours()<18?"Good After Noon":"Good Evening" %>
+      </h1>
+      <% if (user?.profile.avatar) { %>
+        <div>
+          <img src="<%= user.profile.avatar %>" alt="<%= user.profile.name %> avatar" />
+        </div>
+        <% } %>
+    </main>
+
+    <%- include('./partials/footer') %>
