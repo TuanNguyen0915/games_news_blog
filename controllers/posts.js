@@ -34,7 +34,7 @@ function createPost(req, res) {
 
 
 function showPost(req, res) {
-  Post.findById(req.params.postId)
+  Post.findById(req.params.postId).populate([{ path: 'author' }, { path: 'comments.author' }])
     .then(post => {
       res.render('posts/show', {
         post,
@@ -94,4 +94,26 @@ function deletePost(req, res) {
       res.redirect('/posts')
     })
 }
-export { index, newPost, createPost, showPost, editPost, updatePost, deletePost }
+
+
+function addComment(req, res) {
+  Post.findById(req.params.postId)
+    .then(post => {
+      req.body.author = req.user.profile._id
+      post.comments.push(req.body)
+      post.save()
+        .then(() => {
+          res.redirect(`/posts/${post._id}`)
+        })
+        .catch(err => {
+          console.log(err);
+          res.redirect('/posts')
+        })
+    })
+    .catch(err => {
+      console.log(err);
+      res.redirect('/posts')
+    })
+}
+
+export { index, newPost, createPost, showPost, editPost, updatePost, deletePost, addComment }

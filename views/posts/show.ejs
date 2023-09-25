@@ -1,9 +1,24 @@
-<%- include("../partials/html-head") %> <%- include("../partials/nav") %>
+<%- include("../partials/html-head") %>
+<%- include("../partials/nav") %>
 <h1><%= post.title %></h1>
-<p><%= JSON.stringify({content: s}) %></p>
+<p><%= post.content %></p>
+<% if (user) { %>
 <% if (user.profile.isAdmin) { %>
 <a href="/posts/<%= post._id %>/edit">Edit Post</a>
 <% } %>
+<% } %>
 <hr style="width: 70%; border: none; height: 5px; background: white" />
 <h1>Comment</h1>
+<% if (user) { %>
+<form action="/posts/<%= post._id %>/comment" method="POST">
+  <input type="text" name="content" placeholder="add comment..." />
+</form>
+<% } %>
+<ul>
+  <% post.comments.forEach(comment => { %>
+  <li>
+    <p><%= comment.content %> --- <%= comment.author.name %></p>
+  </li>
+  <% }) %>
+</ul>
 <%- include("../partials/footer") %>
