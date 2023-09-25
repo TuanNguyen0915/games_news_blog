@@ -11,6 +11,8 @@ router.get('/:postId', postsCtrl.showPost)
 router.get('/:postId/edit', isLoggedIn, postsCtrl.editPost)
 
 router.put('/:postId', postsCtrl.updatePost)
+router.put('/:postId/comment/:commentId', isLoggedIn, postsCtrl.editComment)
+
 router.post('/:postId/comment', isLoggedIn, postsCtrl.addComment)
 router.post('/', isLoggedIn, isLoggedIn, postsCtrl.createPost)
 
