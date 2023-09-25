@@ -5,10 +5,14 @@
 
     <body>
       <nav>
-        <a href="">NEWEST</a>
-        <a href="">MOST</a>
-
-        <!-- user login/logout -->
-        <a href="">Hi, username </a>
-
+        <a href="/posts">All Posts</a>
+        <a href="/posts/new">New</a>
+        <% if (user) { %>
+          <a href="/auth/logout">👋</a>
+          <% } else { %>
+            <div id="g_id_onload" data-client_id="<%= googleClientID %>" data-login_uri="/auth/google"
+              data-auto_prompt="false"></div>
+            <div class="g_id_signin" data-type="standard" data-size="large" data-theme="outline"
+              data-text="sign_in_with" data-shape="rectangular" data-logo_alignment="left"></div>
+            <% } %>
       </nav>

@@ -1,0 +1,13 @@
+<%- include('../partials/html-head') %> <%- include('../partials/nav') %>
+<form action="/posts/" method="POST">
+  <div>
+    <label for="title-input">Title:</label>
+    <input type="text" name="title" id="title-input" />
+  </div>
+  <div>
+    <label for="content-input">Content:</label>
+    <textarea name="content" id="content-input" cols="30" rows="10"></textarea>
+  </div>
+  <button type="submit">Add post</button>
+</form>
+<%- include('../partials/footer') %>

@@ -1,0 +1,17 @@
+<%- include("../partials/html-head") %>
+  <%- include("../partials/nav") %>
+    <% posts.forEach(post=> { %>
+      <h1>
+        <%= post.title %>
+      </h1>
+      <p>
+        <% if (post.content.length>100) { %> <%= post.content.slice(0,100) %> ...
+            <a href="/posts/<%= post.id %>">read more</a>
+            <% } else { %>
+              <%= post.content %>
+                <% } %>
+      </p>
+      <form action="/posts/<%= post._id %>?_method=DELETE" method="POST">
+        <button type="submit">Delete Post</button>
+      </form>
+      <% }) %> <%- include("../partials/footer") %>
