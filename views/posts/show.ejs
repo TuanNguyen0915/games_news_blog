@@ -1,11 +1,9 @@
-<%- include("../partials/html-head") %>
-  <%- include("../partials/nav") %>
-    <h1>
-      <%= post.title %>
-    </h1>
-    <p>
-      <%= post.content %>
-    </p>
-
-    <a href="/posts/<%= post._id %>/edit">Edit Post</a>
-    <%- include("../partials/footer") %>
+<%- include("../partials/html-head") %> <%- include("../partials/nav") %>
+<h1><%= post.title %></h1>
+<p><%= JSON.stringify({content: s}) %></p>
+<% if (user.profile.isAdmin) { %>
+<a href="/posts/<%= post._id %>/edit">Edit Post</a>
+<% } %>
+<hr style="width: 70%; border: none; height: 5px; background: white" />
+<h1>Comment</h1>
+<%- include("../partials/footer") %>

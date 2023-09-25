@@ -1,7 +1,7 @@
 import { Post } from "../models/post.js";
 
 function index(req, res) {
-  Post.find({})
+  Post.find({}).populate('author')
     .then(posts => {
       res.render('posts/index', {
         posts,
@@ -22,6 +22,7 @@ function newPost(req, res) {
 }
 
 function createPost(req, res) {
+  req.body.author = req.user.profile._id
   Post.create(req.body)
     .then(post => {
       res.redirect('/posts')

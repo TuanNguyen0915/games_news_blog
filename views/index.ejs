@@ -2,7 +2,7 @@
   <%- include('./partials/nav') %>
 
     <main>
-      <h1>Welcome back, <%= user ? user.profile.name : "username" %>
+      <h1>Welcome back , <%= user ? user.profile.name : "guest" %>
       </h1>
       <h1>
         <%=new Date().getHours() < 12?"Good Morning":new Date().getHours()<18?"Good After Noon":"Good Evening" %>

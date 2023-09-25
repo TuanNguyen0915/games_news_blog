@@ -1,4 +1,5 @@
 import { Router } from 'express'
+import { isLoggedIn } from '../middleware/middleware.js'
 import * as postsCtrl from '../controllers/posts.js'
 
 
@@ -10,9 +11,11 @@ router.get('/:postId', postsCtrl.showPost)
 router.get('/:postId/edit', postsCtrl.editPost)
 
 router.put('/:postId', postsCtrl.updatePost)
-router.post('/', postsCtrl.createPost)
+router.post('/', isLoggedIn, postsCtrl.createPost)
 
 router.delete('/:postId', postsCtrl.deletePost)
 export {
   router
 }
+
+
