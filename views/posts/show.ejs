@@ -15,7 +15,7 @@
 </form>
 <% } %>
 <ul>
-  <% post.comments.forEach(comment => { %>
+  <% post.comments?.forEach(comment => { %>
   <li>
     <p><%= comment.content %> --- <%= comment.author.name %></p>
   </li>

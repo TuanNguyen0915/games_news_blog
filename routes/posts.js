@@ -18,5 +18,3 @@ router.delete('/:postId', isLoggedIn, postsCtrl.deletePost)
 export {
   router
 }
-
-
