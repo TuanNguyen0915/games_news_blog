@@ -1,5 +1,50 @@
+* {
+  text-align: justify;
+}
+
 ul {
   list-style-type: none;
+}
+
+.main-body {
+  height: 100%;
+}
+
+.author-info {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+  padding: 1rem 1rem;
+  font-size: 0.8rem;
+}
+
+.author-info a {
+  color: white;
+}
+
+.btn {
+  font-size: 20px;
+  border: none;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border-radius: 2px;
+}
+
+.comment-section {
+  padding-top: 2rem;
+  border-top: 2px solid rgba(255, 255, 255, 0.2);
+
+}
+
+.count-comments {
+  font-size: 1rem;
+  opacity: 0.5;
+}
+
+.comment-section li {
+  width: 80%;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .author-name {

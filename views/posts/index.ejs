@@ -2,8 +2,7 @@
 <link rel="stylesheet" href="/stylesheets/posts/index.css">
 <%- include("../partials/nav") %>
 
-
-<div class="main-body" style="margin-top: 1000px;">
+<section class="main-body">
   <% posts.forEach(post=> { %>
   <div class="post">
     <h1><a class="a-title" href="/posts/<%= post.id %>"><%= post.title %></a></h1>
@@ -12,7 +11,7 @@
       <a class="read-more" href="/posts/<%= post.id %>">read more</a>
       <% } else { %> <a class="read-more" href="/posts/<%= post.id %>"><%= post.content %></a> <% } %>
     </p>
-    <p class="author">Created: <%= post.author.name %> --- <%= post.createdAt.toLocaleDateString() %></p>
+
 
     <% if (user) { %> <% if (user.profile.isAdmin) { %>
     <form action="/posts/<%= post._id %>?_method=DELETE" method="POST">
@@ -20,7 +19,7 @@
     </form>
   </div>
   <% } %> <% } %> <% }) %>
-</div>
+</section>
 
 
 <%- include("../partials/footer") %>

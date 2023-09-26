@@ -23,3 +23,5 @@ router.delete('/:postId/comment/:commentId', isLoggedIn, postsCtrl.deleteComment
 export {
   router
 }
+
+

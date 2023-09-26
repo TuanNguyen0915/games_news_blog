@@ -1,5 +1,5 @@
 <%- include('./partials/html-head') %>
-<link rel="stylesheet" href="/stylesheets/posts/index.css">
+<link rel="stylesheet" href="/stylesheets/homepage.css">
 
 <%- include('./partials/nav') %>
 
@@ -22,9 +22,9 @@
           <%= user ? user.profile.name : "guest" %>
         </h1>
         <h2>
-          <%= weatherData.current.condition.text %>. Current <%= weatherData.current.temp_f %>°
+          <%= weatherData.current.condition.text %>, <%= weatherData.current.temp_f %>°
         </h2>
-        <img style="width: 20%;height: 40%;margin: 0 4rem" src="<%= weatherData.current.condition.icon %>" alt="wetherIcon">
+        <img style="width: 20%;height: 40%;margin: 1rem 4rem" src="<%= weatherData.current.condition.icon %>" alt="wetherIcon">
       </div>
     </div>
   </div>

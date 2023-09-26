@@ -7,3 +7,9 @@
       <% if (user?.profile.avatar) { %>
         <% } %>
     </main>
+
+
+
+
+
+<p class="author">Created: <%= post.author.name %> --- <%= post.createdAt.toLocaleDateString() %></p>

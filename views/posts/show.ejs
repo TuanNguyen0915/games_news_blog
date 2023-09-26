@@ -5,15 +5,25 @@
 <%- include("../partials/nav") %>
 <div class="main-body">
   <h1><%= post.title %></h1>
+  <div class="author-info">
+    <div>BY <a href=""><%= post.author.name.toUpperCase() %></a></div>
+    <div>POSTED: <%= post.createdAt.toLocaleDateString()%> - <%= post.createdAt.toLocaleTimeString() %></div>
+  </div>
   <p><%= post.content %></p>
 
   <% if (user?.profile.isAdmin) { %>
-  <a href="/posts/<%= post._id %>/edit">Edit Post</a>
+  <a href="/posts/<%= post._id %>/edit"><button class="btn">Edit Post</button></a>
   <% } %>
 
-  <hr style="width: 70%; border: none; height: 5px; background: white" />
-  <h1>Comment</h1>
+  <!-- <hr style="width: 70%; border: none; height: 5px; background: white" /> -->
   <div class="comment-section">
+    <h1>Conversation <span class="count-comments"><%= post.comments.length %></span>
+      <% if (post.comments.length < 2) { %>
+      <span class="count-comments">Comment</span>
+      <% } else { %>
+      <span class="count-comments">Comments</span>
+      <% } %>
+    </h1>
     <% if (user) { %>
     <form action="/posts/<%= post._id %>/comment" method="POST">
       <input type="text" name="content" placeholder="add comment..." autocomplete="off" />
@@ -22,9 +32,9 @@
     <ul>
       <% post.comments?.forEach(comment => { %>
       <li>
-        <p> <span class="author-name"><%= comment.author.name %></span> ---
-          <%= comment.content %>
+        <p class="author-name"> <%= comment.author.name %>
         </p>
+        <p style="margin-top: 5px;"><%= comment.content %></p>
 
         <div class="edit-comment">
           <% if (comment.author.equals(user?.profile._id) || user?.profile.isAdmin) { %>
@@ -38,7 +48,6 @@
         <div class="edit-form">
           <form action="/posts/<%= post._id %>/comment/<%= comment._id %>?_method=PUT" method="POST">
             <input type="text" name="content" autocomplete="off" placeholder="edit comment ...">
-            <!-- <button type="submit">Edit</button> -->
           </form>
         </div>
         <% } %>
