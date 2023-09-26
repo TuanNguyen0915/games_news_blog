@@ -1,14 +1,22 @@
-<%- include("../partials/html-head") %> <%- include("../partials/nav") %> <% posts.forEach(post=> { %>
-<h1><%= post.title %></h1>
-<p>
-  <% if (post.content.length>100) { %> <%= post.content.slice(0,100) %> ...
-  <a href="/posts/<%= post.id %>">read more</a>
-  <% } else { %> <%= post.content %> <% } %>
-</p>
-<p>Created: <%= post.author.name %> --- <%= post.createdAt.toLocaleDateString() %></p>
+<%- include("../partials/html-head") %>
+<link rel="stylesheet" href="/stylesheets/posts/index.css">
+<%- include("../partials/nav") %>
+<section class="main-body">
+  <% posts.forEach(post=> { %>
+  <div class="post">
+    <h1><%= post.title %></h1>
+    <p>
+      <% if (post.content.length>65) { %> <%= post.content.slice(0,65) %> ...
+      <a href="/posts/<%= post.id %>">read more</a>
+      <% } else { %> <%= post.content %> <% } %>
+    </p>
+    <p class="author">Created: <%= post.author.name %> --- <%= post.createdAt.toLocaleDateString() %></p>
 
-<% if (user) { %> <% if (user.profile.isAdmin) { %>
-<form action="/posts/<%= post._id %>?_method=DELETE" method="POST">
-  <button type="submit">Delete Post</button>
-</form>
-<% } %> <% } %> <% }) %> <%- include("../partials/footer") %>
+    <% if (user) { %> <% if (user.profile.isAdmin) { %>
+    <form action="/posts/<%= post._id %>?_method=DELETE" method="POST">
+      <button type="submit">Delete Post</button>
+    </form>
+  </div>
+  <% } %> <% } %> <% }) %>
+</section>
+<%- include("../partials/footer") %>

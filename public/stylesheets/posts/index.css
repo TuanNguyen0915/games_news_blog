@@ -1,0 +1,21 @@
+.main-body {
+  display: flex;
+  width: 70%;
+  margin: 20px auto;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.post {
+  margin: 20px 0;
+  text-align: justify;
+}
+
+.post>h1 {
+  font-weight: 800;
+}
+
+.author {
+  font-size: 12px;
+  font-style: italic;
+}

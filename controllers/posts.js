@@ -117,6 +117,7 @@ function addComment(req, res) {
 }
 
 function editComment(req, res) {
+  // Author can edit comment
   Post.findById(req.params.postId)
     .then(post => {
       const comment = post.comments.id(req.params.commentId)
@@ -144,7 +145,8 @@ function deleteComment(req, res) {
   Post.findById(req.params.postId)
     .then(post => {
       const comment = post.comments.id(req.params.commentId)
-      if (comment.author.equals(req.user.profile._id)) {
+      // The author and admin can delete the comment
+      if (comment.author.equals(req.user.profile._id) || req.user?.profile.isAdmin) {
         post.comments.remove(comment)
         post.save()
           .then(() => {

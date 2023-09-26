@@ -2,11 +2,11 @@
 <%- include("../partials/nav") %>
 <h1><%= post.title %></h1>
 <p><%= post.content %></p>
-<% if (user) { %>
-<% if (user.profile.isAdmin) { %>
+
+<% if (user?.profile.isAdmin) { %>
 <a href="/posts/<%= post._id %>/edit">Edit Post</a>
 <% } %>
-<% } %>
+
 <hr style="width: 70%; border: none; height: 5px; background: white" />
 <h1>Comment</h1>
 <% if (user) { %>
@@ -18,7 +18,7 @@
   <% post.comments?.forEach(comment => { %>
   <li>
     <p><%= comment.content %> --- <%= comment.author.name %></p>
-    <% if (comment.author.equals(user?.profile._id)) { %>
+    <% if (comment.author.equals(user?.profile._id) || user?.profile.isAdmin) { %>
     <form action="/posts/<%= post._id %>/comment/<%= comment._id %>?_method=PUT" method="POST">
       <input type="text" name="content" autocomplete="off">
       <button type="submit">Edit</button>
