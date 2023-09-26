@@ -140,4 +140,28 @@ function editComment(req, res) {
     })
 }
 
-export { index, newPost, createPost, showPost, editPost, updatePost, deletePost, addComment, editComment }
+function deleteComment(req, res) {
+  Post.findById(req.params.postId)
+    .then(post => {
+      const comment = post.comments.id(req.params.commentId)
+      if (comment.author.equals(req.user.profile._id)) {
+        post.comments.remove(comment)
+        post.save()
+          .then(() => {
+            res.redirect(`/posts/${post._id}`)
+          })
+          .catch(err => {
+            console.log(err);
+            res.redirect(`/posts/${post._id}`)
+          })
+      } else {
+        throw new Error('🚫 Not authorized 🚫')
+      }
+    })
+    .catch(err => {
+      console.log(err);
+      res.redirect('/posts')
+    })
+}
+
+export { index, newPost, createPost, showPost, editPost, updatePost, deletePost, addComment, editComment, deleteComment }
