@@ -1,14 +1,16 @@
 <%- include("../partials/html-head") %>
 <link rel="stylesheet" href="/stylesheets/posts/index.css">
 <%- include("../partials/nav") %>
-<section class="main-body">
+
+
+<div class="main-body" style="margin-top: 1000px;">
   <% posts.forEach(post=> { %>
   <div class="post">
-    <h1><%= post.title %></h1>
+    <h1><a class="a-title" href="/posts/<%= post.id %>"><%= post.title %></a></h1>
     <p>
       <% if (post.content.length>65) { %> <%= post.content.slice(0,65) %> ...
       <a class="read-more" href="/posts/<%= post.id %>">read more</a>
-      <% } else { %> <%= post.content %> <% } %>
+      <% } else { %> <a class="read-more" href="/posts/<%= post.id %>"><%= post.content %></a> <% } %>
     </p>
     <p class="author">Created: <%= post.author.name %> --- <%= post.createdAt.toLocaleDateString() %></p>
 
@@ -18,5 +20,7 @@
     </form>
   </div>
   <% } %> <% } %> <% }) %>
-</section>
+</div>
+
+
 <%- include("../partials/footer") %>

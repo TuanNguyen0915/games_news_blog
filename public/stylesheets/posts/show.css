@@ -7,6 +7,10 @@ ul {
   color: orange;
 }
 
+ul>li>p {
+  margin: 20px 0 0 0;
+}
+
 .edit-comment {
   display: flex;
   flex-direction: row;
@@ -17,7 +21,7 @@ ul {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 0 10px;
+  margin: 5px 40px;
 }
 
 form>button,

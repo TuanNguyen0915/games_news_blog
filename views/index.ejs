@@ -1,14 +1,33 @@
 <%- include('./partials/html-head') %>
-  <%- include('./partials/nav') %>
+<link rel="stylesheet" href="/stylesheets/posts/index.css">
 
-    <main>
-      <h1>Welcome back , <%= user ? user.profile.name : "guest" %>
-      </h1>
-      <h1>
-        <%=new Date().getHours() < 12?"Good Morning":new Date().getHours()<18?"Good After Noon":"Good Evening" %>
-      </h1>
-      <% if (user?.profile.avatar) { %>
-        <% } %>
-    </main>
+<%- include('./partials/nav') %>
 
-    <%- include('./partials/footer') %>
+
+<div class="content">
+  <div class="slide active">
+    <!-- <img src="https://picsum.photos/800/1000?blur=2" alt="picsum"> -->
+    <img src="<%= imgPath %>" alt="">
+    <div class="left_slide">
+      <h1>Welcome back,</h1>
+      <div class="info">
+        <!-- <h3>01. China Forest Tour</h3> -->
+        <p><%= quote.content %></p>
+        <p style="font-style: italic;"><%= quote.author %></p>
+      </div>
+    </div>
+    <div class="right_slide">
+      <div class="info">
+        <h1>
+          <%= user ? user.profile.name : "guest" %>
+        </h1>
+        <h2>
+          <%= weatherData.current.condition.text %>. Current <%= weatherData.current.temp_f %>°
+        </h2>
+        <img style="width: 20%;height: 40%;margin: 0 4rem" src="<%= weatherData.current.condition.icon %>" alt="wetherIcon">
+      </div>
+    </div>
+  </div>
+</div>
+
+<%- include('./partials/footer') %>
