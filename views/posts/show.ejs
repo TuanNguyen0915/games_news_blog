@@ -1,33 +1,50 @@
 <%- include("../partials/html-head") %>
+<link rel="stylesheet" href="/stylesheets/posts/index.css">
+<link rel="stylesheet" href="/stylesheets/posts/show.css">
+<script defer src="/stylesheets/posts/show.js"></script>
 <%- include("../partials/nav") %>
-<h1><%= post.title %></h1>
-<p><%= post.content %></p>
+<div class="main-body">
+  <h1><%= post.title %></h1>
+  <p><%= post.content %></p>
 
-<% if (user?.profile.isAdmin) { %>
-<a href="/posts/<%= post._id %>/edit">Edit Post</a>
-<% } %>
+  <% if (user?.profile.isAdmin) { %>
+  <a href="/posts/<%= post._id %>/edit">Edit Post</a>
+  <% } %>
 
-<hr style="width: 70%; border: none; height: 5px; background: white" />
-<h1>Comment</h1>
-<% if (user) { %>
-<form action="/posts/<%= post._id %>/comment" method="POST">
-  <input type="text" name="content" placeholder="add comment..." autocomplete="off" />
-</form>
-<% } %>
-<ul>
-  <% post.comments?.forEach(comment => { %>
-  <li>
-    <p><%= comment.content %> --- <%= comment.author.name %></p>
-    <% if (comment.author.equals(user?.profile._id) || user?.profile.isAdmin) { %>
-    <form action="/posts/<%= post._id %>/comment/<%= comment._id %>?_method=PUT" method="POST">
-      <input type="text" name="content" autocomplete="off">
-      <button type="submit">Edit</button>
-    </form>
-    <form action="/posts/<%= post._id %>/comment/<%= comment._id %>?_method=DELETE" method="POST">
-      <button type="submit">X</button>
+  <hr style="width: 70%; border: none; height: 5px; background: white" />
+  <h1>Comment</h1>
+  <div class="comment-section">
+    <% if (user) { %>
+    <form action="/posts/<%= post._id %>/comment" method="POST">
+      <input type="text" name="content" placeholder="add comment..." autocomplete="off" />
     </form>
     <% } %>
-  </li>
-  <% }) %>
-</ul>
+    <ul>
+      <% post.comments?.forEach(comment => { %>
+      <li>
+        <p> <span class="author-name"><%= comment.author.name %></span> ---
+          <%= comment.content %>
+        </p>
+
+        <div class="edit-comment">
+          <% if (comment.author.equals(user?.profile._id) || user?.profile.isAdmin) { %>
+          <button class="edit-btn">
+            <i class="fa-solid fa-pen-fancy"></i>
+          </button>
+          <form action="/posts/<%= post._id %>/comment/<%= comment._id %>?_method=DELETE" method="POST">
+            <button type="submit"><i class="fa-regular fa-trash-can"></i></button>
+          </form>
+        </div>
+        <div class="edit-form">
+          <form action="/posts/<%= post._id %>/comment/<%= comment._id %>?_method=PUT" method="POST">
+            <input type="text" name="content" autocomplete="off">
+            <button type="submit">Edit</button>
+          </form>
+        </div>
+        <% } %>
+      </li>
+      <% }) %>
+    </ul>
+  </div>
+</div>
 <%- include("../partials/footer") %>

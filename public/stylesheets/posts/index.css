@@ -11,8 +11,12 @@
   text-align: justify;
 }
 
-.post>h1 {
-  font-weight: 800;
+.read-more {
+  text-decoration: none;
+}
+
+.read-more:visited {
+  color: blue;
 }
 
 .author {
