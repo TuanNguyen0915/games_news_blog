@@ -8,11 +8,10 @@
   <div class="slide active">
     <!-- random img -->
     <!-- <img src="https://picsum.photos/800/1000?blur=2" alt="picsum"> -->
-    <img src="<%= imgPath %>" alt="">
+    <img class="bg-img" src="<%= imgPath %>" alt="">
     <div class="left_slide">
       <h1>Welcome back,</h1>
       <div class="info">
-        <!-- <h3>01. China Forest Tour</h3> -->
         <p><%= quote.content %></p>
         <p style="font-style: italic;"><%= quote.author %></p>
         <a href="/posts"><button class="btn">All Posts</button></a>
@@ -20,10 +19,13 @@
     </div>
     <div class="right_slide">
       <div class="info">
-        <h1>
+        <h1 style="margin-bottom: 2rem;">
           <%= user ? user.profile.name : "guest" %>
         </h1>
-
+        <div class="weather-info">
+          <%= weatherData.current.condition.text %>. Current <%= weatherData.current.temp_f %>°F
+          <img src="<%= weatherData.current.condition.icon %>" alt="wetherIcon">
+        </div>
       </div>
     </div>
   </div>

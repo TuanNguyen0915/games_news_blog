@@ -6,7 +6,7 @@ const router = Router()
 
 
 router.get('/', function (req, res) {
-  let imgPath = `/images/${Math.floor(Math.random() * 6 + 1)}.jpeg`
+  let imgPath = `/images/${Math.floor(Math.random() * 7 + 1)}.jpeg`
   let weatherData
   let weatherURL = `http://api.weatherapi.com/v1/current.json?key=${process.env.WEATHER_API}&q=auto:ip`
   fetch(weatherURL)
