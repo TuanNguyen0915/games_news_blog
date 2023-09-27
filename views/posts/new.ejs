@@ -1,14 +1,22 @@
-<%- include('../partials/html-head') %> <%- include('../partials/nav') %> <% if (user) { %>
-<form action="/posts/" method="POST">
-  <div>
-    <label for="title-input">Title:</label>
-    <input type="text" name="title" id="title-input" autocomplete="off" />
-  </div>
-  <div>
-    <label for="content-input">Content:</label>
-    <textarea name="content" id="content-input" cols="50" rows="30"></textarea>
-  </div>
-  <button type="submit">Add post</button>
-</form>
+<%- include('../partials/html-head') %>
+<link rel="stylesheet" href="/stylesheets/posts/index.css">
+<%- include('../partials/nav') %>
 
-<% } %> <%- include('../partials/footer') %>
+<div class="main-body">
+  <% if (user) { %>
+  <form action="/posts/" method="POST">
+    <div>
+      <label for="title-input">Title</label>
+      <input type="text" name="title" id="title-input" autocomplete="off" />
+    </div>
+    <div>
+      <label for="content-input">Content</label>
+      <textarea name="content" id="content-input" cols="100" rows="30"></textarea>
+
+    </div>
+    <button class="btn" type="submit">Add post</button>
+  </form>
+  <% } %>
+</div>
+
+<%- include('../partials/footer') %>

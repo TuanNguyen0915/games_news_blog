@@ -3,22 +3,27 @@
 <%- include("../partials/nav") %>
 
 <section class="main-body">
-  <% posts.forEach(post=> { %>
-  <div class="post">
-    <h1><a class="a-title" href="/posts/<%= post.id %>"><%= post.title %></a></h1>
-    <p>
-      <% if (post.content.length>65) { %> <%= post.content.slice(0,65) %> ...
-      <a class="read-more" href="/posts/<%= post.id %>">read more</a>
-      <% } else { %> <a class="read-more" href="/posts/<%= post.id %>"><%= post.content %></a> <% } %>
-    </p>
+  <% posts.forEach(post => { %>
+  <div class="post-content">
+    <h1>
+      <a class="a-title" href="/posts/<%= post._id %>">
+        <%= post.title %>
+      </a>
+    </h1>
+    <p><%= post.content.slice(0,65) %> ... <a class="read-more" href="/posts/<%= post._id %>">read more</a></p>
 
-
-    <% if (user) { %> <% if (user.profile.isAdmin) { %>
+    <% if (user) { %>
+    <% if (user.profile.isAdmin) { %>
     <form action="/posts/<%= post._id %>?_method=DELETE" method="POST">
       <button type="submit">Delete Post</button>
     </form>
+    <% } %>
+    <% } %>
   </div>
-  <% } %> <% } %> <% }) %>
+  <% }) %>
+  <% if (user) { %>
+  <a href="/posts/new"><button class="btn">New Post</button></a>
+  <% } %>
 </section>
 
 

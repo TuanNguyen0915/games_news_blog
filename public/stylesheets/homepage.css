@@ -10,7 +10,7 @@ body {
 .content {
   position: relative;
   width: 100%;
-  height: 90%;
+  height: 100%;
 }
 
 .slide img {
@@ -73,7 +73,7 @@ body {
 }
 
 /* BUTTON */
-/* .slide .left_slide .info .btn {
+.slide .left_slide .info .btn {
   outline: none;
   border: 2px solid white;
   padding: 15px 25px;
@@ -84,17 +84,17 @@ body {
   font-size: 16px;
   transition: 0.5s;
   cursor: pointer;
-} */
+}
 
-/* .slide .left_slide .info .btn:hover {
+.slide .left_slide .info .btn:hover {
   background-color: transparent;
   color: white;
-} */
+}
 
-/* .slide .left_slide .info .btn:focus {
+.slide .left_slide .info .btn:focus {
   background-color: transparent;
   color: white;
-} */
+}
 
 
 /* right side */

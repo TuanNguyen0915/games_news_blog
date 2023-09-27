@@ -1,22 +1,21 @@
 <% if (!user) { %>
-  <script defer src="https://accounts.google.com/gsi/client"></script>
-  <% } %>
+<script defer src="https://accounts.google.com/gsi/client"></script>
+<% } %>
 </head>
 
-<body>      
+<body>
   <nav>
     <a href="/posts">All Posts</a>
     <% if (user) { %>
-      <% if (user.profile.isAdmin) { %>
-        <a href="/posts/new">New Post</a>
-      <% } else  %>
+    <% if (user.profile.isAdmin) { %>
+    <a href="/posts/new">New Post</a>
+    <% }  %>
     <% } %>
     <% if (user) { %>
-      <a href="">Hi, <%= user.profile.name %></a>
-      <a href="/auth/logout">Log out</a>
-    <% } else { %>                
-      <div id="g_id_onload" data-client_id="<%= googleClientID %>" data-login_uri="/auth/google" data-auto_prompt="false"></div>
-      <div class="g_id_signin" data-type="standard" data-size="large" data-theme="outline"
-      data-text="sign_in_with" data-shape="rectangular" data-logo_alignment="left"></div>
+    <a href="/">Hi, <%= user.profile.name %></a>
+    <a href="/auth/logout">Log out</a>
+    <% } else { %>
+    <div id="g_id_onload" data-client_id="<%= googleClientID %>" data-login_uri="/auth/google" data-auto_prompt="false"></div>
+    <div class="g_id_signin" data-type="standard" data-size="large" data-theme="outline" data-text="sign_in_with" data-shape="rectangular" data-logo_alignment="left"></div>
     <% } %>
   </nav>

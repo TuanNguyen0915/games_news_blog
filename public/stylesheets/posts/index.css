@@ -2,14 +2,30 @@
 
 .main-body {
   display: flex;
-  width: 70%;
+  width: 80%;
   margin: 20px auto;
   justify-content: center;
   flex-direction: column;
+  text-align: justify;
+}
+
+.main-body a {
+  width: 120px;
+}
+
+.post-content {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  padding-bottom: 1rem;
+  margin: 0 0 2rem 0;
 }
 
 .a-title {
   color: white;
+  text-decoration: none;
+}
+
+.read-more {
+  color: rgba(255, 165, 0, 0.5);
   text-decoration: none;
 }
 
@@ -18,18 +34,27 @@
   color: orange;
 }
 
-.post {
-  margin: 20px 0;
-  text-align: justify;
-}
-
-.read-more {
-  color: blue;
-  text-decoration: none;
-}
-
 
 .author {
   font-size: 12px;
   font-style: italic;
+}
+
+#title-input,
+#content-input {
+  width: 100%;
+  padding: 1rem;
+  margin-bottom: 2rem;
+}
+
+
+.btn {
+  margin-top: 1rem;
+  padding: 1rem;
+  font-size: 1rem;
+}
+
+.main-body form label {
+  font-size: 2rem;
+  font-weight: 800;
 }

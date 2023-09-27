@@ -32,7 +32,7 @@
     <ul>
       <% post.comments?.forEach(comment => { %>
       <li>
-        <p class="author-name"> <span><img style="width: 10%; border-radius: 5px;" src="https://ui-avatars.com/api/?name=<%= comment.author.name.split(" ").join("+") %>"></span> <%= comment.author.name %>
+        <p class="author-name"> <span><img class="avatar" src="https://ui-avatars.com/api/?name=<%= comment.author.name.split(" ").join("+") %>"></span> <%= comment.author.name %>
         </p>
         <p style="margin-top: 5px;"><%= comment.content %></p>
 

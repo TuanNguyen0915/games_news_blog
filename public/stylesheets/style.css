@@ -26,9 +26,10 @@ nav {
   background-color: #283044;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: right;
   padding: 10px;
   min-height: 60px;
+  padding-right: 10rem;
 }
 
 nav>a {

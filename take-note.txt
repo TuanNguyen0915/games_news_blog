@@ -13,3 +13,31 @@
 
 
 <p class="author">Created: <%= post.author.name %> --- <%= post.createdAt.toLocaleDateString() %></p>
+
+
+<section class="main-body">
+  <% posts.forEach(post=> { %>
+  <div class="post-content">
+    <h1><a class="a-title" href="/posts/<%= post.id %>"><%= post.title %></a></h1>
+    <p>
+      <% if (post.content.length>65) { %> <%= post.content.slice(0,65) %> ...
+      <a class="read-more" href="/posts/<%= post.id %>">read more</a>
+      <% } else { %> <a class="read-more" href="/posts/<%= post.id %>"><%= post.content %></a> <% } %>
+    </p>
+
+
+    <% if (user) { %> <% if (user.profile.isAdmin) { %>
+    <form action="/posts/<%= post._id %>?_method=DELETE" method="POST">
+      <button type="submit">Delete Post</button>
+    </form>
+  </div>
+  <% } %> <% } %> <% }) %>
+</section>
+
+
+
+
+<h2>
+          <%= weatherData.current.condition.text %>, <%= weatherData.current.temp_f %>°F
+        </h2>
+        <img style="width: 20%;height: 40%;margin: 1rem 4rem" src="<%= weatherData.current.condition.icon %>" alt="wetherIcon">
