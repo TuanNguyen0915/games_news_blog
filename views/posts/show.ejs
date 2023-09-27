@@ -47,7 +47,7 @@
         </div>
         <div class="edit-form">
           <form action="/posts/<%= post._id %>/comment/<%= comment._id %>?_method=PUT" method="POST">
-            <input type="text" name="content" autocomplete="off" placeholder="edit comment ...">
+            <input class="edit-input" type="text" name="content" autocomplete="off" placeholder="edit comment ...">
           </form>
         </div>
         <% } %>

@@ -169,21 +169,17 @@ function deleteComment(req, res) {
 function pendingPosts(req, res) {
   Post.find({})
     .then(posts => {
-      let newPosts
+      let newPosts = []
       posts.forEach(post => {
-        if (post.approved === false) {
+        if (!post.approved) {
           newPosts.push(post)
         }
       });
       console.log(newPost.length);
-      if (req.user?.profile.isAdmin) {
-        res.render('posts/pendingPosts', {
-          posts: newPosts,
-          title: 'Pending Posts'
-        })
-      } else {
-        throw new Error('🚫 Not authorized 🚫')
-      }
+      res.render('posts/pendingPosts', {
+        posts: newPosts,
+        title: 'Pending Posts'
+      })
     })
     .catch(err => {
       console.log(err);
@@ -191,4 +187,15 @@ function pendingPosts(req, res) {
     })
 }
 
-export { index, newPost, createPost, showPost, editPost, updatePost, deletePost, addComment, updateComment, deleteComment, pendingPosts }
+function approvePost(req, res) {
+  Post.findById(req.params.postId)
+    .then(post => {
+      post.approved = true
+      post.save()
+        .then(() => {
+          res.redirect('/posts')
+        })
+    })
+}
+
+export { index, newPost, createPost, showPost, editPost, updatePost, deletePost, addComment, updateComment, deleteComment, pendingPosts, approvePost }

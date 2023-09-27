@@ -7,11 +7,13 @@ const router = Router()
 
 router.get('/', postsCtrl.index)
 router.get('/new', postsCtrl.newPost)
+router.get('/pendingposts', postsCtrl.pendingPosts)
 router.get('/:postId', postsCtrl.showPost)
 router.get('/:postId/edit', isLoggedIn, postsCtrl.editPost)
 
 router.put('/:postId', postsCtrl.updatePost)
 router.put('/:postId/comment/:commentId', isLoggedIn, postsCtrl.updateComment)
+router.put('/:postId/approve', isLoggedIn, postsCtrl.approvePost)
 
 router.post('/:postId/comment', isLoggedIn, postsCtrl.addComment)
 router.post('/', isLoggedIn, isLoggedIn, postsCtrl.createPost)
@@ -20,7 +22,6 @@ router.delete('/:postId', isLoggedIn, postsCtrl.deletePost)
 router.delete('/:postId/comment/:commentId', isLoggedIn, postsCtrl.deleteComment)
 
 
-router.get('/pendingposts', postsCtrl.pendingPosts)
 export {
   router
 }

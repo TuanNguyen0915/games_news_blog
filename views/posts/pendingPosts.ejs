@@ -11,6 +11,12 @@
       <%= post.title %>
     </h1>
     <p><%= post.content %></p>
+    <form action="/posts/<%= post._id %>/approve?_method=PUT" method="POST">
+      <button type="submit" class="btn">Approve</button>
+    </form>
+    <form action="/posts/<%= post._id %>?_method=DELETE" method="POST">
+      <button type="submit" class="btn">Delete Post</button>
+    </form>
   </div>
   <% }) %>
   <% } %>
