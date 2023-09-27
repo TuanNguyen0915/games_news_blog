@@ -1,0 +1,21 @@
+<%- include("../partials/html-head") %>
+<link rel="stylesheet" href="/stylesheets/posts/index.css">
+<%- include("../partials/nav") %>
+
+<section class="main-body">
+  <% if (user) { %>
+  <% if (user.profile.isAdmin) { %>
+  <% posts.forEach(post => { %>
+  <div class="post-content">
+    <h1>
+      <%= post.title %>
+    </h1>
+    <p><%= post.content %></p>
+  </div>
+  <% }) %>
+  <% } %>
+  <% } %>
+</section>
+
+
+<%- include("../partials/footer") %>

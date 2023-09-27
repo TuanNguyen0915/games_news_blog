@@ -4,6 +4,7 @@
 
 <section class="main-body">
   <% posts.forEach(post => { %>
+  <% if (post.approved) { %>
   <div class="post-content">
     <h1>
       <a class="a-title" href="/posts/<%= post._id %>">
@@ -20,7 +21,11 @@
     <% } %>
     <% } %>
   </div>
+  <% }  %>
+
   <% }) %>
+
+  <!-- New Post button -->
   <% if (user) { %>
   <a href="/posts/new"><button class="btn">New Post</button></a>
   <% } %>

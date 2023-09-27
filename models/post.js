@@ -13,7 +13,8 @@ const postSchema = new Schema({
   title: { type: String, require: true },
   content: { type: String, require: true },
   author: { type: Schema.Types.ObjectId, ref: "Profile" },
-  comments: [commentSchema]
+  comments: [commentSchema],
+  approved: { type: Boolean, default: false }
 }, {
   timestamps: true
 })

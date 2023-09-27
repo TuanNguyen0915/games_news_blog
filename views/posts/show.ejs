@@ -15,7 +15,7 @@
   <a href="/posts/<%= post._id %>/edit"><button class="btn">Edit Post</button></a>
   <% } %>
 
-  <!-- <hr style="width: 70%; border: none; height: 5px; background: white" /> -->
+  <!-- COMMENT-SECTION -->
   <div class="comment-section">
     <h1>Conversation <span class="count-comments"><%= post.comments.length %></span>
       <% if (post.comments.length < 2) { %>
@@ -26,7 +26,7 @@
     </h1>
     <% if (user) { %>
     <form action="/posts/<%= post._id %>/comment" method="POST">
-      <input type="text" name="content" placeholder="add comment..." autocomplete="off" />
+      <input id="comment-input" type="text" name="content" placeholder="What do you think?" autocomplete="off" />
     </form>
     <% } %>
     <ul>

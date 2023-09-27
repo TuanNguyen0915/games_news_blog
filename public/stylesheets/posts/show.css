@@ -89,3 +89,10 @@ form>button:hover,
 .edit-form {
   display: none;
 }
+
+#comment-input {
+  width: 80%;
+  height: 60px;
+  padding-left: 20px;
+  opacity: 0.4;
+}

@@ -116,7 +116,7 @@ function addComment(req, res) {
     })
 }
 
-function editComment(req, res) {
+function updateComment(req, res) {
   // Author can edit comment
   Post.findById(req.params.postId)
     .then(post => {
@@ -166,4 +166,29 @@ function deleteComment(req, res) {
     })
 }
 
-export { index, newPost, createPost, showPost, editPost, updatePost, deletePost, addComment, editComment, deleteComment }
+function pendingPosts(req, res) {
+  Post.find({})
+    .then(posts => {
+      let newPosts
+      posts.forEach(post => {
+        if (post.approved === false) {
+          newPosts.push(post)
+        }
+      });
+      console.log(newPost.length);
+      if (req.user?.profile.isAdmin) {
+        res.render('posts/pendingPosts', {
+          posts: newPosts,
+          title: 'Pending Posts'
+        })
+      } else {
+        throw new Error('🚫 Not authorized 🚫')
+      }
+    })
+    .catch(err => {
+      console.log(err);
+      res.redirect('/posts')
+    })
+}
+
+export { index, newPost, createPost, showPost, editPost, updatePost, deletePost, addComment, updateComment, deleteComment, pendingPosts }

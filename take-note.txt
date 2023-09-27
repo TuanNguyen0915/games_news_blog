@@ -41,3 +41,113 @@
           <%= weatherData.current.condition.text %>, <%= weatherData.current.temp_f %>°F
         </h2>
         <img style="width: 20%;height: 40%;margin: 1rem 4rem" src="<%= weatherData.current.condition.icon %>" alt="wetherIcon">
+
+
+
+<nav>
+    <a href="/posts">All Posts</a>
+    <% if (user) { %>
+    <% if (user.profile.isAdmin) { %>
+    <a href="/posts/new">New Post</a>
+    <a href="/posts/pending">Pending</a>
+    <% }  %>
+    <% } %>
+    <% if (user) { %>
+    <a href="/">Hi, <%= user.profile.name %></a>
+    <a href="/auth/logout"><i class="fa-solid fa-right-from-bracket"></i></a>
+    <% } else { %>
+    <div id="g_id_onload" data-client_id="<%= googleClientID %>" data-login_uri="/auth/google" data-auto_prompt="false"></div>
+    <div class="g_id_signin" data-type="standard" data-size="large" data-theme="outline" data-text="sign_in_with" data-shape="rectangular" data-logo_alignment="left"></div>
+    <% } %>
+  </nav>
+
+
+
+
+
+
+
+Cast to ObjectId failed for value "pending" (type string) at path "_id" for model "Post"
+    at ObjectId.cast (/Users/tuannguyen/code/sei/projects/game_news/node_modules/mongoose/lib/schema/objectid.js:250:11)
+    at SchemaType.applySetters (/Users/tuannguyen/code/sei/projects/game_news/node_modules/mongoose/lib/schematype.js:1220:12)
+    at SchemaType.castForQuery (/Users/tuannguyen/code/sei/projects/game_news/node_modules/mongoose/lib/schematype.js:1632:15)
+    at cast (/Users/tuannguyen/code/sei/projects/game_news/node_modules/mongoose/lib/cast.js:356:32)
+    at Query.cast (/Users/tuannguyen/code/sei/projects/game_news/node_modules/mongoose/lib/query.js:4910:12)
+    at Query._castConditions (/Users/tuannguyen/code/sei/projects/game_news/node_modules/mongoose/lib/query.js:2232:10)
+    at model.Query._findOne (/Users/tuannguyen/code/sei/projects/game_news/node_modules/mongoose/lib/query.js:2519:8)
+    at model.Query.exec (/Users/tuannguyen/code/sei/projects/game_news/node_modules/mongoose/lib/query.js:4429:28)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5) {
+  stringValue: '"pending"',
+  messageFormat: undefined,
+  kind: 'ObjectId',
+  value: 'pending',
+  path: '_id',
+  reason: BSONError: Argument passed in must be a string of 12 bytes or a string of 24 hex characters or an integer
+      at new ObjectId (/Users/tuannguyen/code/sei/projects/game_news/node_modules/bson/lib/bson.cjs:2006:23)
+      at castObjectId (/Users/tuannguyen/code/sei/projects/game_news/node_modules/mongoose/lib/cast/objectid.js:25:12)
+      at ObjectId.cast (/Users/tuannguyen/code/sei/projects/game_news/node_modules/mongoose/lib/schema/objectid.js:248:12)
+      at SchemaType.applySetters (/Users/tuannguyen/code/sei/projects/game_news/node_modules/mongoose/lib/schematype.js:1220:12)
+      at SchemaType.castForQuery (/Users/tuannguyen/code/sei/projects/game_news/node_modules/mongoose/lib/schematype.js:1632:15)
+      at cast (/Users/tuannguyen/code/sei/projects/game_news/node_modules/mongoose/lib/cast.js:356:32)
+      at Query.cast (/Users/tuannguyen/code/sei/projects/game_news/node_modules/mongoose/lib/query.js:4910:12)
+      at Query._castConditions (/Users/tuannguyen/code/sei/projects/game_news/node_modules/mongoose/lib/query.js:2232:10)
+      at model.Query._findOne (/Users/tuannguyen/code/sei/projects/game_news/node_modules/mongoose/lib/query.js:2519:8)
+      at model.Query.exec (/Users/tuannguyen/code/sei/projects/game_news/node_modules/mongoose/lib/query.js:4429:28),
+  valueType: 'string',
+  model: Model { Post }
+
+
+
+
+
+  <section class="main-body">
+  <% if (user) { %>
+  <% if (user.profile.isAdmin) { %>
+  <% posts.forEach(post => { %>
+  <% if (!post.approved) { %>
+  <div class="post-content">
+    <h1>
+      <a class="a-title" href="/posts/<%= post._id %>">
+        <%= post.title %>
+      </a>
+    </h1>
+    <p><%= post.content.slice(0,65) %> ... <a class="read-more" href="/posts/<%= post._id %>">read more</a></p>
+
+    <% if (user) { %>
+    <% if (user.profile.isAdmin) { %>
+    <form action="/posts/<%= post._id %>?_method=DELETE" method="POST">
+      <button type="submit">Delete Post</button>
+    </form>
+    <% } %>
+    <% } %>
+  </div>
+  <% } else { %>
+  <h1>There's no pending post</h1>
+  <% } %>
+  <% }) %>
+
+  <!-- New Post button -->
+  <% if (user) { %>
+  <a href="/posts/new"><button class="btn">New Post</button></a>
+  <% } %>
+  <% } %>
+  <% } %>
+</section>
+
+
+
+
+<section class="main-body">
+  <% if (user) { %>
+  <% if (user.profile.isAdmin) { %>
+  <% posts.forEach(post => { %>
+  <div class="post-content">
+    <h1>
+      <%= post.title %>
+    </h1>
+    <p><%= post.content %></p>
+  </div>
+  <% }) %>
+  <% } %>
+  <% } %>
+</section>
