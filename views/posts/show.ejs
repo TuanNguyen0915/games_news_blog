@@ -2,6 +2,18 @@
 <link rel="stylesheet" href="/stylesheets/posts/index.css">
 <link rel="stylesheet" href="/stylesheets/posts/show.css">
 <script defer src="/stylesheets/posts/show.js"></script>
+<!-- <script>
+  function hideAndShow() {
+    const editBtns = document.querySelectorAll('.edit-btn')
+    const editForms = document.querySelectorAll('.edit-form')
+    editBtns.forEach((btn, idx) => {
+      btn.addEventListener('click', function() {
+        editForms[idx].style.display = editForms[idx].style.display === "none" ? "flex" : "none"
+      })
+    })
+  }
+</script> -->
+
 <%- include("../partials/nav") %>
 <div class="main-body">
   <h1><%= post.title %></h1>
@@ -34,11 +46,17 @@
       <li>
         <p class="author-name"> <span><img class="avatar" src="https://ui-avatars.com/api/?name=<%= comment.author.name.split(" ").join("+") %>"></span> <%= comment.author.name %>
         </p>
+
+        <% if (comment.author.equals(user?.profile._id)) { %>
+        <p style="margin-top: 5px; color: rgb(210, 102, 102)"><%= comment.content %></p>
+
+        <% } else { %>
         <p style="margin-top: 5px;"><%= comment.content %></p>
+        <% } %>
 
         <div class="edit-comment">
           <% if (comment.author.equals(user?.profile._id) || user?.profile.isAdmin) { %>
-          <button class="edit-btn">
+          <button class="edit-btn" onclick="hideAndShow()">
             <i class="fa-solid fa-pen-fancy"></i>
           </button>
           <form action="/posts/<%= post._id %>/comment/<%= comment._id %>?_method=DELETE" method="POST">
