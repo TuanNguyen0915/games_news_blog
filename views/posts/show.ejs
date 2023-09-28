@@ -11,7 +11,7 @@
   </div>
   <p><%= post.content %></p>
 
-  <% if (user?.profile.isAdmin) { %>
+  <% if ( post.author.equals(user?.profile._id) ||user?.profile.isAdmin) { %>
   <a href="/posts/<%= post._id %>/edit"><button class="btn">Edit Post</button></a>
   <% } %>
 

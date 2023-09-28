@@ -21,7 +21,7 @@ body {
 }
 
 .slide.active .bg-img {
-  opacity: 0.5;
+  opacity: 0.7;
 }
 
 .slide .left_slide {
@@ -96,7 +96,7 @@ body {
 
 
 /* right side */
-.slide .right_slide {
+.right_slide {
   position: absolute;
   top: 0;
   right: 0;
@@ -110,17 +110,18 @@ body {
   transition: 0.5s;
 }
 
-.slide.active .right_slide {
+.right_slide {
   transform: translateX(0);
 }
 
-.slide .right_slide .info {
+.right_slide .info {
   position: absolute;
   left: 1rem;
 }
 
-.slide .right_slide .info h1 {
+.right_slide .info h1 {
   font-size: 8rem;
+  padding-bottom: 3rem;
   text-shadow: 0 1px 0 #ccc, 0 2px 0 #c9c9c9, 0 3px 0 #ddd, 0 4px 0 #b9b9b9,
     0 5px 0 #aaa, 0 6px 1px rgba(0, 0, 0, 0.1), 0 0px 5px rgba(0, 0, 0, 0.1),
     0 1px 3px rgba(0, 0, 0, 0.3), 0 3px 5px rgba(0, 0, 0, 0.2),
@@ -128,41 +129,10 @@ body {
     0 20px 20px rgba(0, 0, 0, 0.15);
 }
 
-.slide .right_slide .info h2 {
+.right_slide .info h2 {
   position: absolute;
   font-size: 2rem;
   transform: translate(50px, -60px);
-}
-
-.slide .right_slide .next_prev {
-  position: absolute;
-  bottom: 5rem;
-  right: 5rem;
-}
-
-.slide .right_slide .next_prev #next,
-.slide .right_slide .next_prev #prev {
-  padding: 14px 17px;
-  background-color: white;
-  color: #777;
-  border-radius: 18px;
-  font-weight: bold;
-  font-size: 17px;
-  cursor: pointer;
-  border: 2px solid transparent;
-  transition: 0.5s;
-  margin-right: 5px;
-  position: relative;
-}
-
-.slide .right_slide .next_prev #next:hover,
-.slide .right_slide .next_prev #prev:hover {
-  transform: scale(1.1);
-}
-
-.slide .right_slide .next_prev #next:focus,
-.slide .right_slide .next_prev #prev:focus {
-  transform: scale(1.1);
 }
 
 .weather-info {

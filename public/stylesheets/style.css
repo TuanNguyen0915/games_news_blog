@@ -42,6 +42,10 @@ nav>a {
   justify-content: center;
 }
 
+nav>a:hover {
+  color: orange;
+}
+
 main {
   display: flex;
   align-items: center;
